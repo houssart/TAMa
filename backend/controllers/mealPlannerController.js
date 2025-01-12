@@ -4,7 +4,6 @@ const path = require("path");
 const mealPlannerDBPath = path.join(__dirname, "../data/mealPlannerDB.json");
 let mealPlannerData = JSON.parse(fs.readFileSync(mealPlannerDBPath, "utf-8"));
 
-// Get meals for a specific user and date (or general if userId is null)
 const getMealsByDate = (userId, date) => {
   const entries = userId
     ? mealPlannerData.filter((entry) => entry.userId === userId && entry.date === date)
@@ -13,7 +12,7 @@ const getMealsByDate = (userId, date) => {
   if (entries.length > 0) {
     return entries[0];
   } else {
-    return { date, meals: {} }; // Return empty structure if no data found
+    return { date, meals: {} };
   }
 };
 
@@ -21,14 +20,12 @@ const addOrUpdateMeal = (date, type, meal) => {
   const entryIndex = mealPlannerData.findIndex((entry) => entry.date === date);
 
   if (entryIndex === -1) {
-    // Add a new entry
     const newEntry = {
       date,
       meals: { [type]: meal },
     };
     mealPlannerData.push(newEntry);
   } else {
-    // Update existing entry
     mealPlannerData[entryIndex].meals[type] = meal;
   }
 
@@ -52,7 +49,6 @@ const removeMeal = (mealId, mealType) => {
 
   delete mealPlannerData[dayIndex].meals[mealType];
 
-  // Remove the day entry if no meals are left
   if (Object.keys(mealPlannerData[dayIndex].meals).length === 0) {
     mealPlannerData.splice(dayIndex, 1);
   }

@@ -24,7 +24,6 @@ const MealPlanningScreen = ({ navigation }) => {
     { id: "7", name: "Sunday" },
   ];
 
-  // Fetch meals from the backend
   const loadMeals = async () => {
     try {
       const response = await api.get("/mealplanner");
@@ -49,7 +48,7 @@ const MealPlanningScreen = ({ navigation }) => {
     try {
       await api.delete(`/mealplanner/meals`, { data: { mealId, mealType } });
       Alert.alert("Meal Deleted", "The meal was successfully removed.");
-      loadMeals(); // Refresh meals
+      loadMeals();
     } catch (error) {
       console.error("Error deleting meal:", error.response?.data || error.message);
       Alert.alert("Error", "Failed to delete the meal.");

@@ -1,11 +1,9 @@
 const fs = require("fs");
 const path = require("path");
 
-// Load recipe database
 const recipeDBPath = path.join(__dirname, "../data/recipesDB.json");
 let recipes = JSON.parse(fs.readFileSync(recipeDBPath, "utf-8"));
 
-// Get all recipes
 const getAllRecipes = () => {
   return recipes.map((recipe, index) => ({
     id : recipe.id || index + 1,
@@ -19,24 +17,21 @@ const getAllRecipes = () => {
   }));
 };
 
-// Get a single recipe by ID
 const getRecipeById = (id) => {
   return recipes.find((recipe) => recipe.id === parseInt(id)) || null;
 };
 
-// Add a new recipe
 const addRecipe = (recipe) => {
   if (!recipe.title || !recipe.readyInMinutes) {
     throw new Error("Title and readyInMinutes are required");
   }
-  recipe.id = recipes.length + 1; // Generate a new ID
+  recipe.id = recipes.length + 1;
   recipes.push(recipe);
   fs.writeFileSync(recipeDBPath, JSON.stringify(recipes, null, 2));
   return recipe;
 };
 
 
-// Update an existing recipe
 const updateRecipe = (id, updatedData) => {
   const index = recipes.findIndex((recipe) => recipe.id === parseInt(id));
   if (index === -1) return null;
@@ -45,7 +40,6 @@ const updateRecipe = (id, updatedData) => {
   return recipes[index];
 };
 
-// Delete a recipe
 const deleteRecipe = (id) => {
   const index = recipes.findIndex((recipe) => recipe.id === parseInt(id));
   if (index === -1) return null;

@@ -9,13 +9,11 @@ const {
   filterRecipesByName,
 } = require("../controllers/recipeController");
 
-// Get all recipes
 router.get("/", (req, res) => {
   const recipes = getAllRecipes();
   res.json(recipes);
 });
 
-// Get a single recipe by ID
 router.get("/:id", (req, res) => {
   const recipe = getRecipeById(req.params.id);
   if (!recipe) {
@@ -25,21 +23,17 @@ router.get("/:id", (req, res) => {
 });
 
 
-
-// Add a new recipe
 router.post("/", (req, res) => {
   const newRecipe = addRecipe(req.body);
   res.status(201).json(newRecipe);
 });
 
-// Update a recipe
 router.put("/:id", (req, res) => {
   const updatedRecipe = updateRecipe(req.params.id, req.body);
   if (!updatedRecipe) return res.status(404).send("Recipe not found");
   res.json(updatedRecipe);
 });
 
-// Delete a recipe
 router.delete("/:id", (req, res) => {
   const deletedRecipe = deleteRecipe(req.params.id);
   if (!deletedRecipe) return res.status(404).send("Recipe not found");
@@ -47,7 +41,7 @@ router.delete("/:id", (req, res) => {
 });
 
 router.get("/search", (req, res) => {
-  const { query } = req.query; // Extract query from request URL
+  const { query } = req.query;
   if (!query || query.trim() === "") {
     return res.status(400).json({ error: "Query parameter is required" });
   }

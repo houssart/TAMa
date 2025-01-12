@@ -6,9 +6,8 @@ const jwt = require("jsonwebtoken");
 const userDBPath = path.join(__dirname, "../data/userDB.json");
 let users = JSON.parse(fs.readFileSync(userDBPath, "utf-8"));
 
-const secretKey = "your_secret_key"; // Replace with a secure key
+const secretKey = "secret_key";
 
-// Register a new user
 const registerUser = async (email, password) => {
   if (users.find((user) => user.email === email)) {
     throw new Error("User already exists");
@@ -33,7 +32,6 @@ const registerUser = async (email, password) => {
   return { id: newUser.id, email: newUser.email, preferences: newUser.preferences };
 };
 
-// Login a user
 const loginUser = async (email, password) => {
   const user = users.find((user) => user.email === email);
   if (!user) {
@@ -45,12 +43,10 @@ const loginUser = async (email, password) => {
     throw new Error("Invalid email or password");
   }
 
-  // Generate a JWT
   const token = jwt.sign({ userId: user.id }, secretKey, { expiresIn: "1h" });
   return { token, userId: user.id };
 };
 
-// Authenticate a user with a JWT
 const authenticate = (req, res, next) => {
   const token = req.headers.authorization?.split(" ")[1];
   if (!token) {
@@ -66,14 +62,12 @@ const authenticate = (req, res, next) => {
   }
 };
 
-// Get user details
 const getUserDetails = (userId) => {
   const user = users.find((user) => user.id === userId);
   if (!user) throw new Error("User not found");
   return { id: user.id, email: user.email, preferences: user.preferences };
 };
 
-// Update user preferences
 const updateUserPreferences = (userId, newPreferences) => {
   const user = users.find((user) => user.id === userId);
   if (!user) throw new Error("User not found");

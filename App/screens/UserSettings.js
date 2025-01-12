@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 20,
     fontWeight: "bold",
-    color: "#2e7d32", // Dark green
+    color: "#2e7d32",
   },
 });
 

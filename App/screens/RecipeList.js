@@ -61,7 +61,6 @@ const RecipeList = ({ navigation }) => {
         onChangeText={setQuery}
       />
 
-      {/* Filter Button */}
       <TouchableOpacity
         style={styles.filterButton}
         onPress={() => setShowFilters((prev) => !prev)}
@@ -113,34 +112,34 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 10,
-    backgroundColor: "#f2f8e1", // Updated to match RecipeDetails background color
+    backgroundColor: "#f2f8e1",
   },
   header: {
     fontSize: 24,
     fontWeight: "bold",
-    color: "#3b5323", // Dark green
+    color: "#3b5323",
     marginBottom: 20,
     textAlign: "center",
     paddingTop: 20,
   },
   searchBar: {
     height: 40,
-    borderColor: "#a2c3a4", // Soft green
+    borderColor: "#a2c3a4",
     borderWidth: 1,
     borderRadius: 5,
     paddingHorizontal: 10,
     marginBottom: 10,
-    backgroundColor: "#ffffff", // White background
+    backgroundColor: "#ffffff",
   },
   filterButton: {
-    backgroundColor: "#27AE60", // Green background
+    backgroundColor: "#27AE60",
     padding: 10,
     borderRadius: 8,
     alignItems: "center",
     marginBottom: 10,
   },
   filterButtonText: {
-    color: "#FFFFFF", // White text
+    color: "#FFFFFF",
     fontSize: 16,
     fontWeight: "bold",
   },
@@ -159,11 +158,11 @@ const styles = StyleSheet.create({
     textAlign: "center",
     marginTop: 20,
     fontSize: 16,
-    color: "#a94442", // Soft red
+    color: "#a94442",
   },
   recipeCard: {
     flexDirection: "row",
-    backgroundColor: "#ffffff", // White background
+    backgroundColor: "#ffffff",
     borderRadius: 8,
     marginBottom: 10,
     padding: 10,
@@ -185,11 +184,11 @@ const styles = StyleSheet.create({
   recipeTitle: {
     fontSize: 18,
     fontWeight: "bold",
-    color: "#3b5323", // Dark green
+    color: "#3b5323",
   },
   recipeSubtitle: {
     fontSize: 14,
-    color: "#616161", // Grey
+    color: "#616161",
   },
 });
 

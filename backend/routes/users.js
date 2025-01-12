@@ -2,7 +2,6 @@ const express = require("express");
 const router = express.Router();
 const { registerUser, loginUser, authenticate, getUserDetails, updateUserPreferences } = require("../controllers/userController");
 
-// Register a new user
 router.post("/register", async (req, res) => {
   const { email, password } = req.body;
 
@@ -18,7 +17,6 @@ router.post("/register", async (req, res) => {
   }
 });
 
-// Login a user
 router.post("/login", async (req, res) => {
   const { email, password } = req.body;
 
@@ -34,7 +32,6 @@ router.post("/login", async (req, res) => {
   }
 });
 
-// Get user details
 router.get("/me", authenticate, (req, res) => {
   try {
     const user = getUserDetails(req.userId);
@@ -44,7 +41,6 @@ router.get("/me", authenticate, (req, res) => {
   }
 });
 
-// Update user preferences
 router.put("/me/preferences", authenticate, (req, res) => {
   try {
     const updatedUser = updateUserPreferences(req.userId, req.body);

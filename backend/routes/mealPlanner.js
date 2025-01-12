@@ -8,12 +8,10 @@ const {
   getMeals,
 } = require("../controllers/mealPlannerController");
 
-// Get meals for a specific date (user-specific if authenticated)
 router.get("/:date", (req, res) => {
   const { date } = req.params;
 
   if (req.headers.authorization) {
-    // If the user is authenticated, fetch user-specific data
     try {
       authenticate(req, res, () => {
         const meals = getMealsByDate(req.userId, date);
@@ -23,8 +21,7 @@ router.get("/:date", (req, res) => {
       res.status(401).send("Invalid token");
     }
   } else {
-    // If not authenticated, fallback to non-user-specific data
-    const meals = getMealsByDate(null, date); // Passing `null` for userId
+    const meals = getMealsByDate(null, date);
     res.json(meals);
   }
 });
@@ -71,7 +68,7 @@ router.delete("/meals", (req, res) => {
 router.get("/", (req, res) => {
   try {
     const meals = getMeals();
-    res.json(meals || []); // Always return an array
+    res.json(meals || []);
   } catch (error) {
     console.error("Error fetching all meals:", error.message);
     res.status(500).json({ error: "Internal server error" });

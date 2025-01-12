@@ -7,13 +7,13 @@ import {
   Image,
   StyleSheet,
 } from "react-native";
-import { fetchRecipes } from "../services/api"; // Correctly import fetchRecipes
-import api from "../services/api"; // Ensure the API instance is correctly imported
+import { fetchRecipes } from "../services/api";
+import api from "../services/api";
 
 const MealSelectionScreen = ({ route, navigation }) => {
   const { selectedDay } = route.params;
   const [recipes, setRecipes] = useState([]);
-  const [selectedMealType, setSelectedMealType] = useState("lunch"); // Default to lunch
+  const [selectedMealType, setSelectedMealType] = useState("lunch");
 
   useEffect(() => {
     const loadRecipes = async () => {
@@ -33,14 +33,14 @@ const MealSelectionScreen = ({ route, navigation }) => {
       type: selectedMealType,
       recipeId: recipe.id,
       title: recipe.title,
-      image: recipe.image || "https://via.placeholder.com/100", // Fallback image
+      image: recipe.image || "https://via.placeholder.com/100",
       readyInMinutes: recipe.readyInMinutes,
     };
 
     console.log("Payload sent to API:", payload);
 
     try {
-      await api.post(`/mealplanner/${selectedDay}`, payload); // Use the correct API instance
+      await api.post(`/mealplanner/${selectedDay}`, payload);
       alert(`Added ${recipe.title} to ${selectedMealType} on ${selectedDay}.`);
       navigation.goBack();
     } catch (error) {
@@ -52,7 +52,6 @@ const MealSelectionScreen = ({ route, navigation }) => {
     <View style={styles.container}>
       <Text style={styles.header}>Select Meal for {selectedDay}</Text>
 
-      {/* Meal Type Selection */}
       <View style={styles.mealTypeContainer}>
         {["lunch", "dinner"].map((type) => (
           <TouchableOpacity
@@ -75,7 +74,6 @@ const MealSelectionScreen = ({ route, navigation }) => {
         ))}
       </View>
 
-      {/* Recipes List */}
       <FlatList
         data={recipes}
         keyExtractor={(item) => item.id.toString()}

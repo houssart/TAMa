@@ -5,12 +5,11 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { Image } from "react-native";
 import RecipeList from "./screens/RecipeList";
 import RecipeDetails from "./screens/RecipeDetails";
-import WebViewScreen from "./screens/WebViewScreen"; // WebViewScreen for opening URLs
-import UserSettings from "./screens/UserSettings"; // Placeholder for user preferences screen
+import WebViewScreen from "./screens/WebViewScreen";
+import UserSettings from "./screens/UserSettings";
 import MealPlanningScreen from "./screens/MealPlanningScreen";
 import MealSelectionScreen from "./screens/MealSelectionScreen";
 
-// Stack Navigator for Recipes
 const RecipeStack = createStackNavigator();
 
 function RecipeStackScreen() {
@@ -54,7 +53,6 @@ function MealPlannerStackScreen() {
   );
 }
 
-// Bottom Tab Navigator
 const Tab = createBottomTabNavigator();
 
 export default function App() {
@@ -67,8 +65,8 @@ export default function App() {
 
             if (route.name === "Recipes") {
               imageSource = focused
-                ? require("./assets/list-icon.png") // Focused icon
-                : require("./assets/list-icon.png"); // Default icon
+                ? require("./assets/list-icon.png")
+                : require("./assets/list-icon.png");
             } else if (route.name === "Profile") {
               imageSource = focused
                 ? require("./assets/user-icon.png")
