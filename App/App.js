@@ -69,11 +69,11 @@ export default function App() {
               imageSource = focused
                 ? require("./assets/list-icon.png") // Focused icon
                 : require("./assets/list-icon.png"); // Default icon
-            } else if (route.name === "UserSettings") {
+            } else if (route.name === "Profile") {
               imageSource = focused
                 ? require("./assets/user-icon.png")
                 : require("./assets/user-icon.png");
-            } else if (route.name === "MealPlanner") {
+            } else if (route.name === "Meal Planner") {
               imageSource = focused
                 ? require("./assets/calendar-icon.png")
                 : require("./assets/calendar-icon.png");
@@ -97,8 +97,8 @@ export default function App() {
         })}
       >
         <Tab.Screen name="Recipes" component={RecipeStackScreen} />
-        <Tab.Screen name="MealPlanner" component={MealPlannerStackScreen} />
-        <Tab.Screen name="UserSettings" component={UserSettings} />
+        <Tab.Screen name="Meal Planner" component={MealPlannerStackScreen} />
+        <Tab.Screen name="Profile" component={UserSettings} />
       </Tab.Navigator>
     </NavigationContainer>
   );
