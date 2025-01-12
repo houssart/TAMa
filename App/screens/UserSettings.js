@@ -4,7 +4,7 @@ import { View, Text, StyleSheet } from "react-native";
 const UserSettings = () => {
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>User Settings</Text>
+      <Text style={styles.text}>Profile</Text>
     </View>
   );
 };
