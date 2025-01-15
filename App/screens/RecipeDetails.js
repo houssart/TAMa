@@ -40,7 +40,7 @@ const RecipeDetails = ({ route, navigation }) => {
   };
 
   const handleAddToMealPlanner = () => {
-    navigation.navigate("MealPlanner", { recipe });
+    navigation.navigate("Meal Planner", { recipe });
   };
 
   const openLink = (url) => {
@@ -136,7 +136,6 @@ const RecipeDetails = ({ route, navigation }) => {
         </TouchableOpacity>
       </ScrollView>
 
-      {/* Floating Button */}
       <TouchableOpacity
         style={styles.floatingButton}
         onPress={handleAddToMealPlanner}
